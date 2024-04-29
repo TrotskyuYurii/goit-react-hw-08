@@ -1,3 +1,4 @@
+// registrationPage.jsx
 import { useDispatch } from "react-redux";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
@@ -7,6 +8,9 @@ import { register } from "../../redux/auth/operations";
 import css from "../../pages/RegistrationPage/RegistrationPage.module.css";
 
 const RegistrationPage = () => {
+  
+  const dispatch = useDispatch(); // Викликаємо useDispatch безпосередньо всередині компонента
+
   const FORM_INITIAL_VALUES = {
     name: "",
     email: "",
@@ -27,9 +31,7 @@ const RegistrationPage = () => {
   });
 
   const registerUser = (values) => {
-    const dispatch = useDispatch();
     dispatch(register(values));
-    // actions.resetForm();
   };
 
   return (
