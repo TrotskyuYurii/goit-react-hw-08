@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
-import { fetchContacts } from "../../redux/contacts/operations";
+import { fetchContacts, deleteContact } from "../../redux/contacts/operations";
 import { selectPhonebookIsLoading, selectPhonebookContacts, selectPhonebookIsError } from "../../redux/contacts/selectors";
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
@@ -25,7 +25,7 @@ const ContactsPage = () => {
   }, [dispatch])
 
   const onDeleteContact = (contactId) => {
-    // dispatch(deleteContact(contactId));
+    dispatch(deleteContact(contactId));
   };
 
   // const filteredContacts = useSelector(selectFilteredContacts);
