@@ -1,9 +1,17 @@
+import { useDispatch } from "react-redux";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 
+import { logIn } from "../../redux/auth/operations";
+
 import css from "./LoginPage.module.css"
 
+
+
+
 const LoginPage = () => {
+
+  const dispatch = useDispatch(); 
 
   const FORM_INITIAL_VALUES = {
     email: "",
@@ -21,7 +29,8 @@ const LoginPage = () => {
   });
 
   const loginUser = (values) => {
-    console.log(values);
+    dispatch(logIn(values));
+    // console.log(values);
   };
 
   return (
@@ -51,7 +60,7 @@ const LoginPage = () => {
           <br />
           <br />
           <button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? "Submitting..." : "Register now"}
+            {isSubmitting ? "Submitting..." : "Login now"}
           </button>
         </Form>
       )}
