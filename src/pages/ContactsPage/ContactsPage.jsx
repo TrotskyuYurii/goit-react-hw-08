@@ -6,6 +6,7 @@ import { selectPhonebookIsLoading, selectPhonebookContacts, selectPhonebookIsErr
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Contact from "../../components/Contact/Contact";
+import ContactForm from "../../components/ContactForm/ContactForm";
 
 import css from "./ContactsPage.module.css"
 
@@ -31,6 +32,7 @@ const ContactsPage = () => {
 
   return (
     <div>
+       <ContactForm />
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
       {!isLoading && !isError && contacts.length === 0 && <h2>There are no contacts</h2>}

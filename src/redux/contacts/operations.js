@@ -10,7 +10,7 @@ export const fetchContacts = createAsyncThunk(
     async (_, thunkAPI) => { //1 параметр - дані що передають в санку, 2 параметр - обект кофигурації санки
       try {
         const response = await axiosInstance.get('/contacts');
-        console.log('fetchContacts', response.data);
+        // console.log('fetchContacts', response.data);
         return response.data;
       } catch (error) {
         return thunkAPI.rejectWithValue(error.message);
@@ -23,7 +23,7 @@ export const fetchContacts = createAsyncThunk(
     'contacts/addContact',
     async (contact, thunkAPI) => {
       try {
-        const response = await axiosInstance.post(baseURL, contact);
+        const response = await axiosInstance.post("/contacts", contact);
         return response.data;
       } catch (error) {
         return thunkAPI.rejectWithValue(error.message);
