@@ -3,6 +3,7 @@ import { useEffect } from "react";
 
 import { fetchContacts, deleteContact } from "../../redux/contacts/operations";
 import { selectPhonebookIsLoading, selectPhonebookContacts, selectPhonebookIsError } from "../../redux/contacts/selectors";
+import { selectFilteredContacts } from "../../redux/contacts/slice";
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Contact from "../../components/Contact/Contact";
@@ -19,6 +20,7 @@ const ContactsPage = () => {
   const isLoading = useSelector(selectPhonebookIsLoading);
   const isError = useSelector(selectPhonebookIsError);
   const contacts = useSelector(selectPhonebookContacts);
+  // const filteredContacts = useSelector(selectFilteredContacts);
 
   useEffect(() => {
    dispatch(fetchContacts()) 
@@ -28,7 +30,7 @@ const ContactsPage = () => {
     dispatch(deleteContact(contactId));
   };
 
-  // const filteredContacts = useSelector(selectFilteredContacts);
+  
 
   return (
     <div>
