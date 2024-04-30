@@ -1,13 +1,21 @@
+import { useDispatch } from "react-redux";
 import { NavLink, useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import clsx from "clsx";
 
-import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
+import { logOut } from "../../redux/auth/operations";
 
 import css from "./Layout.module.css";
 
 
 const Layout = ({ children }) => {
+
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        dispatch(logOut());
+    }
 
     const getNavLinkClassName = ({ isActive }) =>
     clsx(css.navLink, {
@@ -15,7 +23,7 @@ const Layout = ({ children }) => {
     });
 
     const isLoggedIn  = useSelector(selectIsLoggedIn);
-    console.log("isLoggedIn", isLoggedIn);
+    const userDate    = useSelector(selectUser);
 
   return (
     <div>
@@ -26,12 +34,22 @@ const Layout = ({ children }) => {
           </NavLink>
           {isLoggedIn ? <><NavLink to="/contacts" className={getNavLinkClassName}>
             Contacts
-          </NavLink></>:<><NavLink to="/registration" className={getNavLinkClassName}>
+          </NavLink>
+          <div>
+            <span>Welcome, {userDate.email} </span>
+            <button onClick={handleLogout} type="button">Logout</button>
+          </div>
+          </>
+          
+          :
+          
+          <><NavLink to="/registration" className={getNavLinkClassName}>
             Registration
           </NavLink>
           <NavLink to="/login" className={getNavLinkClassName}>
             Login
-          </NavLink></> }
+          </NavLink>          
+          </> }
           
           
         </nav>

@@ -64,3 +64,17 @@ export const refreshUser = createAsyncThunk(
         }
     }
 )
+
+
+export const logOut = createAsyncThunk(
+    'auth/logout',
+    async (_, thunkAPI) => {
+        try {
+            await axiosInstance.post('/users/logout');
+            cleartoken();
+            return;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.message);
+        }
+    }
+)

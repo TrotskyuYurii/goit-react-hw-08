@@ -1,6 +1,6 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 // import { register, logIn, logOut, refreshUser } from "./operations";
-import { register, logIn, refreshUser } from "./operations";
+import { register, logIn, refreshUser, logOut } from "./operations";
 
 const INITIAL_STATE = {
   user: {
@@ -30,7 +30,7 @@ const authSlice = createSlice({
                 state.isLoggedIn = true;
                 state.isLoading = false;
             })
-            .addCase(register.rejected, (state, action) => {
+            .addCase(register.rejected, (state) => {
                 state.isLoggedIn = false;
                 state.isLoading = false;
                 // state.isError = true;
@@ -46,7 +46,7 @@ const authSlice = createSlice({
                 state.isLoggedIn = true;
                 state.isLoading = false;
             })
-            .addCase(logIn.rejected, (state, action) => {
+            .addCase(logIn.rejected, (state) => {
                 state.isLoggedIn = false;
                 state.isLoading = false;
                 // state.isError = true;
@@ -63,10 +63,21 @@ const authSlice = createSlice({
                 state.isLoading = false;
                 state.isrefreshing = true;
             })
-            .addCase(refreshUser.rejected, (state, action) => {
+            .addCase(refreshUser.rejected, (state) => {
                 state.isLoggedIn = false;
                 state.isLoading = false;
                 state.isrefreshing = false;
+                // state.isError = true;
+            })
+            .addCase(logOut.pending, (state) => {
+                state.isLoading = true;
+                // state.isError = false;   
+            })
+            .addCase(logOut.fulfilled, () => {
+               return INITIAL_STATE;
+            })
+            .addCase(logOut.rejected, (state) => {
+                state.isLoggedIn = false;
                 // state.isError = true;
             })
         
