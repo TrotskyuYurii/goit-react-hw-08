@@ -46,6 +46,6 @@ export const store = configureStore({
 
 });
 
-// //persist - єкспортуємо store з redux-persist
+// //persist - єкспортуємо store з redux-persist в main.jsx
 export const persistor = persistStore(store);
 // //persist

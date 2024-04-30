@@ -20,16 +20,3 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </Provider>
   </React.StrictMode>
 );
-
-// ReactDOM.createRoot(document.getElementById("root")).render(
-//   // <React.StrictMode>
-//   <Provider store={store}>
-//     <PersistGate persistor={persistor}>
-//     <BrowserRouter>
-//       <App />
-//     </BrowserRouter>
-//     </PersistGate>
-//   </Provider>
-
-//   // </React.StrictMode>
-// );

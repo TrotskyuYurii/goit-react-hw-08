@@ -1,7 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import { Suspense, lazy, useState, useEffect } from "react";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
+import { refreshUser } from "./redux/auth/operations";
 import Loyout from "./components/Layout/Layout.jsx";
 import HomePage from "./pages/HomePage/HomePage.jsx";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage.jsx";
@@ -14,6 +15,13 @@ import css from "./app.module.css";
 
 
 function App() {
+
+  //Оновлення стану користувача
+  const dispatch = useDispatch();
+  useEffect(() => {
+   dispatch(refreshUser()) 
+  }, [dispatch])
+
 
   return (
     <div>
