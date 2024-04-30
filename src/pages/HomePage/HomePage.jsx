@@ -2,7 +2,11 @@ import css from "./HomePage.module.css"
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    
+    <div>
+      <h1>My Contacts app</h1>
+      <p>HomePage</p> 
+      </div>
   )
 }
 
