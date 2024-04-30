@@ -10,6 +10,8 @@ import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 import ContactsPage from "./pages/ContactsPage/ContactsPage.jsx";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.jsx";
 import Loader from "./components/Loader/Loader.jsx";
+import RestrictedRoute from "./components/RestrictedRoute/RestrictedRoute.jsx";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute.jsx";
 
 import css from "./app.module.css";
 
@@ -29,9 +31,9 @@ function App() {
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/registration" element={<RegistrationPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/contacts" element={<ContactsPage />} />
+          <Route path="/registration" element={<RestrictedRoute><RegistrationPage /></RestrictedRoute>} />
+          <Route path="/login" element={<RestrictedRoute><LoginPage /></RestrictedRoute>} />
+          <Route path="/contacts" element={<PrivateRoute><ContactsPage /></PrivateRoute>} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
