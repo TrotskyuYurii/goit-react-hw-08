@@ -30,7 +30,7 @@ const authPeristConfig = {
 export const store = configureStore({
   reducer: {
     // contacts: persistReducer(authPeristConfig, contactsReducer), //redux-persist - додаємо до головного сховища збережені дані в локальному сховищі ПРИКЛАД
-    contacts: contactsReducer,
+    phonebook: contactsReducer,
     filters: filtersReducer,
     auth: persistReducer(authPeristConfig, authReducer),
   },

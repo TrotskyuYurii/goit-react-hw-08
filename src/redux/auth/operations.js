@@ -5,7 +5,7 @@ import axios from 'axios';
 //instance
 const baseURL = 'https://connections-api.herokuapp.com';
 
-const axiosInstance = axios.create({
+export const axiosInstance = axios.create({
     baseURL: baseURL,
   });
 
