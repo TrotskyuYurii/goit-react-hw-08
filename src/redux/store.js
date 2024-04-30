@@ -4,47 +4,48 @@ import { filtersReducer } from "./filters/slice"; //Redux Toolkit - імпорт
 import { authReducer } from "./auth/slice";        //Redux Toolkit - імпортуємо слайс авторизації
 
 // //persist - імопртуємо необхідні бібліотеки persist redux. З цим не розбирємось - просто копіюємо
-// import {
-//   persistStore,
-//   persistReducer,
-//   FLUSH,
-//   REHYDRATE,
-//   PAUSE,
-//   PERSIST,
-//   PURGE,
-//   REGISTER,
-// } from "redux-persist";
-// import storage from "redux-persist/lib/storage";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+
+import storage from "redux-persist/lib/storage";
 // //persist
 
 // //persist - вказуємо які редюсери нам потрібно зберегти в локальному сховищі
-// const contactsPeristConfig = {
-//   key: "contactsitems",
-//   storage,
-//   whitelist: ["items"], // зберігаємо лише властивість items з головного сховища у локальному сховищі (білий список)
-// };
+const authPeristConfig = {
+  key: "auth",
+  storage,
+  whitelist: ["token"], // зберігаємо лише властивість items з головного сховища у локальному сховищі (білий список)
+};
 // //persist
 
 //Redux Toolkit - єкспортуємо головне сховище store
 export const store = configureStore({
   reducer: {
-    // contacts: persistReducer(contactsPeristConfig, contactsReducer), //redux-persist - додаємо до головного сховища збережені дані в локальному сховищі
+    // contacts: persistReducer(authPeristConfig, contactsReducer), //redux-persist - додаємо до головного сховища збережені дані в локальному сховищі ПРИКЛАД
     contacts: contactsReducer,
     filters: filtersReducer,
-    auth: authReducer,
+    auth: persistReducer(authPeristConfig, authReducer),
   },
 
-  // //persist - конфігурація middleware для redux-persist. З цим не розбирємось - просто копіюємо
-  // middleware: (getDefaultMiddleware) =>
-  // getDefaultMiddleware({
-  //   serializableCheck: {
-  //     ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-  //   },
-  // }),
-  // //persist
+  //persist - конфігурація middleware для redux-persist. З цим не розбирємось - просто копіюємо
+  middleware: (getDefaultMiddleware) =>
+  getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),
+  //persist
 
 });
 
 // //persist - єкспортуємо store з redux-persist
-// export const persistor = persistStore(store);
+export const persistor = persistStore(store);
 // //persist
