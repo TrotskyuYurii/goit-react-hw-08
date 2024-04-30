@@ -33,6 +33,7 @@ const ContactsPage = () => {
     <div>
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
+      {!isLoading && !isError && contacts.length === 0 && <h2>There are no contacts</h2>}
 
       <ul className={css.ContactListUl}>
         {contacts.map((contact) => (
