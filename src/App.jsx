@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { refreshUser } from "./redux/auth/operations";
 import Layout from "./components/Layout/Layout";
-import Loader from "./components/Loader/Loader";
 import RestrictedRoute from "./components/RestrictedRoute/RestrictedRoute";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import HomePage from "./pages/HomePage/HomePage";
@@ -16,8 +15,12 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+    const token = localStorage.getItem('token'); // або отримайте токен зі стейту, якщо він там зберігається
+
+    if (token) {
+        dispatch(refreshUser());
+    }
+}, [dispatch]);
 
   return (
     <Layout>

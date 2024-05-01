@@ -1,3 +1,5 @@
+/* Registratoipn і  login */
+
 .navLink {
     display: flex;
     padding: 7px 20px;
@@ -31,10 +33,11 @@
   
   .nav {
     display: flex;
-    justify-content: center; 
-    gap: 10px;
-    padding: 10px 0;
+    flex-direction:initial;
+    /* justify-content: center;  */
+    /* gap: 100px; */
+    /* padding: 10px 0;
     max-width: 1200px; 
-    margin: 0 auto; 
+    margin: 0 auto;  */
   }
   
