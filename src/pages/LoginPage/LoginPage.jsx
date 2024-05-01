@@ -1,8 +1,9 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 
 import { logIn } from "../../redux/auth/operations";
+import {selectIsError} from "../../redux/auth/selectors";
 
 import css from "./LoginPage.module.css"
 
@@ -33,9 +34,13 @@ const LoginPage = () => {
     // console.log(values);
   };
 
+  const isError = useSelector(selectIsError);
+
+
   return (
     <div>
     <h2>Please login</h2>
+    {isError && <p style={{ color: 'red' }}>Whoops something went wrong. Please try another autorization data</p>}
     <Formik
       initialValues={FORM_INITIAL_VALUES}
       onSubmit={loginUser}
@@ -59,9 +64,7 @@ const LoginPage = () => {
           </label>{" "}
           <br />
           <br />
-          <button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? "Submitting..." : "Login now"}
-          </button>
+          <button type="submit">"Login now"</button>
         </Form>
       )}
     </Formik>

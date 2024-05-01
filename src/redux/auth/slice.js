@@ -10,7 +10,7 @@ const INITIAL_STATE = {
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
-//   isError: false,
+  isError: false,
   isLoading: false,
 };
 
@@ -22,7 +22,7 @@ const authSlice = createSlice({
             .addCase(register.pending, (state) => {
                 state.isLoggedIn  = false;
                 state.isLoading = true;
-                // state.isError = false;
+                state.isError = false;
             })
             .addCase(register.fulfilled, (state, action) => {
                 state.user = action.payload.user;
@@ -33,12 +33,12 @@ const authSlice = createSlice({
             .addCase(register.rejected, (state) => {
                 state.isLoggedIn = false;
                 state.isLoading = false;
-                // state.isError = true;
+                state.isError = true;
             })
             .addCase(logIn.pending, (state) => {
                 state.isLoggedIn  = false;
                 state.isLoading = true;
-                // state.isError = false;   
+                state.isError = false;   
             })
             .addCase(logIn.fulfilled, (state, action) => {
                 state.user = action.payload.user;
@@ -49,13 +49,13 @@ const authSlice = createSlice({
             .addCase(logIn.rejected, (state) => {
                 state.isLoggedIn = false;
                 state.isLoading = false;
-                // state.isError = true;
+                state.isError = true;
             })
             .addCase(refreshUser.pending, (state) => {
                 state.isLoggedIn  = false;
                 state.isLoading = true;
                 state.isrefreshing = false;
-                // state.isError = false;   
+                state.isError = false;   
             })
             .addCase(refreshUser.fulfilled, (state, action) => {
                 state.user = action.payload;
@@ -67,18 +67,18 @@ const authSlice = createSlice({
                 state.isLoggedIn = false;
                 state.isLoading = false;
                 state.isrefreshing = false;
-                // state.isError = true;
+                state.isError = true;
             })
             .addCase(logOut.pending, (state) => {
                 state.isLoading = true;
-                // state.isError = false;   
+                state.isError = false;   
             })
             .addCase(logOut.fulfilled, () => {
                return INITIAL_STATE;
             })
             .addCase(logOut.rejected, (state) => {
                 state.isLoggedIn = false;
-                // state.isError = true;
+                state.isError = true;
             })
         
     }

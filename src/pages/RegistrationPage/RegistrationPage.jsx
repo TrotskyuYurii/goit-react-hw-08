@@ -1,8 +1,9 @@
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 
 import { register } from "../../redux/auth/operations";
+import {selectIsError} from "../../redux/auth/selectors";
 
 import css from "../../pages/RegistrationPage/RegistrationPage.module.css";
 
@@ -36,9 +37,12 @@ const RegistrationPage = () => {
     dispatch(register(values));
   };
 
+  const isError = useSelector(selectIsError);
+
   return (
     <div>
       <h2>Registration Page</h2>
+      {isError && <p style={{ color: 'red' }}>Whoops something went wrong. Please try another registration data</p>}
       <Formik
         initialValues={FORM_INITIAL_VALUES}
         onSubmit={registerUser}
@@ -68,9 +72,8 @@ const RegistrationPage = () => {
             </label>{" "}
             <br />
             <br />
-            <button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Submitting..." : "Register now"}
-            </button>
+            <button type="submit">Register now</button>
+            
           </Form>
         )}
       </Formik>
