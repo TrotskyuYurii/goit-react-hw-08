@@ -8,7 +8,7 @@
 
 .ContactForm{
   display: flex;
-  justify-content: center; /* Вирівнювання елементів по горизонталі */
-  align-items: center; /* Вирівнювання елементів по вертикалі */
+  justify-content: center; 
+  align-items: center;
   gap: 10px;
 }
