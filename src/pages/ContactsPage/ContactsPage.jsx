@@ -2,42 +2,46 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
 import { fetchContacts, deleteContact } from "../../redux/contacts/operations";
-import { selectPhonebookIsLoading, selectPhonebookContacts, selectPhonebookIsError } from "../../redux/contacts/selectors";
+import {
+  selectPhonebookIsLoading,
+  selectPhonebookContacts,
+  selectPhonebookIsError,
+} from "../../redux/contacts/selectors";
 import { selectFilteredContacts } from "../../redux/contacts/slice";
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Contact from "../../components/Contact/Contact";
 import ContactForm from "../../components/ContactForm/ContactForm";
+import SearchBox from "../../components/SearchBox/SearchBox";
 
-import css from "./ContactsPage.module.css"
-
-
-
+import css from "./ContactsPage.module.css";
 
 const ContactsPage = () => {
-
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
   const isLoading = useSelector(selectPhonebookIsLoading);
   const isError = useSelector(selectPhonebookIsError);
   const contacts = useSelector(selectPhonebookContacts);
   // const filteredContacts = useSelector(selectFilteredContacts);
 
   useEffect(() => {
-   dispatch(fetchContacts()) 
-  }, [dispatch])
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   const onDeleteContact = (contactId) => {
     dispatch(deleteContact(contactId));
   };
 
-  
-
   return (
     <div>
-       <ContactForm />
+      <div className={css.ContactForm}>
+        <ContactForm />
+        <SearchBox />
+      </div>
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
-      {!isLoading && !isError && contacts.length === 0 && <h2>There are no contacts</h2>}
+      {!isLoading && !isError && contacts.length === 0 && (
+        <h2>There are no contacts</h2>
+      )}
 
       <ul className={css.ContactListUl}>
         {contacts.map((contact) => (
@@ -50,9 +54,8 @@ const ContactsPage = () => {
           />
         ))}
       </ul>
-
     </div>
-  )
-}
+  );
+};
 
-export default ContactsPage
+export default ContactsPage;

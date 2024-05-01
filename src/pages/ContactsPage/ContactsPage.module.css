@@ -5,3 +5,10 @@
   justify-content: flex-start; 
   list-style-type: none; 
 }
+
+.ContactForm{
+  display: flex;
+  justify-content: center; /* Вирівнювання елементів по горизонталі */
+  align-items: center; /* Вирівнювання елементів по вертикалі */
+  gap: 10px;
+}
