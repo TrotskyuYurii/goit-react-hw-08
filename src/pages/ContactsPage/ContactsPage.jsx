@@ -7,7 +7,6 @@ import {
   selectPhonebookContacts,
   selectPhonebookIsError,
 } from "../../redux/contacts/selectors";
-import { selectFilteredContacts } from "../../redux/contacts/slice";
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Contact from "../../components/Contact/Contact";
@@ -16,12 +15,24 @@ import SearchBox from "../../components/SearchBox/SearchBox";
 
 import css from "./ContactsPage.module.css";
 
-const ContactsPage = () => {
+  const ContactsPage = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectPhonebookIsLoading);
   const isError = useSelector(selectPhonebookIsError);
   const contacts = useSelector(selectPhonebookContacts);
-  // const filteredContacts = useSelector(selectFilteredContacts);
+
+
+  const filter = useSelector((state) => state.filters.name.toLowerCase());
+
+  const filteredContacts = contacts.filter((cont) => {
+    const name = cont.name.toLowerCase();
+    const number = cont.number.toString().toLowerCase();
+    const filterLowerCase = filter.toLowerCase();
+  
+    return name.includes(filterLowerCase) || number.includes(filterLowerCase);
+  });
+
+
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -44,7 +55,7 @@ const ContactsPage = () => {
       )}
 
       <ul className={css.ContactListUl}>
-        {contacts.map((contact) => (
+        {filteredContacts.map((contact) => (
           <Contact
             key={contact.id}
             id={contact.id}
