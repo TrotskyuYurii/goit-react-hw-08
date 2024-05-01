@@ -46,6 +46,7 @@ const ContactForm = () => {
       validationSchema={mailBoxSchema}
     >
       <Form className={css.formFormik}>
+        <h3>Add new contact</h3>
         <label>
           <span>User name:</span>
           <br />

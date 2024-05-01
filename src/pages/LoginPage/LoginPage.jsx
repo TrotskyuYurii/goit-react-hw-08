@@ -35,7 +35,7 @@ const LoginPage = () => {
 
   return (
     <div>
-    <h1>Login Page</h1>
+    <h2>Please login</h2>
     <Formik
       initialValues={FORM_INITIAL_VALUES}
       onSubmit={loginUser}

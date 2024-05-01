@@ -4,8 +4,9 @@ const HomePage = () => {
   return (
     
     <div>
-      <h1>My Contacts app</h1>
-      <p>HomePage</p> 
+      <h1>My Contacts</h1>
+      <p>Welcome to my contacts application</p> 
+      <p>Use free and fast search your contacts</p>
       </div>
   )
 }

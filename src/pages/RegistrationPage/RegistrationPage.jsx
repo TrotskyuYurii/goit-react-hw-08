@@ -38,7 +38,7 @@ const RegistrationPage = () => {
 
   return (
     <div>
-      <h1>Registration Page</h1>
+      <h2>Registration Page</h2>
       <Formik
         initialValues={FORM_INITIAL_VALUES}
         onSubmit={registerUser}

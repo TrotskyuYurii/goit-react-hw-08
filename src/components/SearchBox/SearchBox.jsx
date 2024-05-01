@@ -13,7 +13,7 @@ const SearchBox = () => {
 
   return (
     <section>
-      <h4>Find contacts by name</h4>
+      <h3>Find contacts by name or number</h3>
       <input type="text" placeholder="Search..." onChange={onChangeFilter} />
     </section>
   );
