@@ -15,7 +15,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const token = localStorage.getItem('token'); // або отримайте токен зі стейту, якщо він там зберігається
+    const token = localStorage.getItem('token'); 
 
     if (token) {
         dispatch(refreshUser());
