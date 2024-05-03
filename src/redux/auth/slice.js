@@ -67,7 +67,7 @@ const authSlice = createSlice({
                 state.isLoggedIn = false;
                 state.isLoading = false;
                 state.isrefreshing = false;
-                state.isError = true;
+                // state.isError = true;
             })
             .addCase(logOut.pending, (state) => {
                 state.isLoading = true;
