@@ -10,10 +10,12 @@ import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import ContactsPage from "./pages/ContactsPage/ContactsPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
-import { selectIsRefreshing } from "./redux/auth/selectors";
+import { selectIsRefreshing, selectIsLoggedIn } from "./redux/auth/selectors";
 
 const App = () => {
   const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
+  // const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
     // const token = localStorage.getItem('token'); 
@@ -23,7 +25,7 @@ const App = () => {
     // }
 }, [dispatch]);
 
-  const isRefreshing = useSelector(selectIsRefreshing);
+  
   if (isRefreshing) {<div>Loading...</div>}
 
 
